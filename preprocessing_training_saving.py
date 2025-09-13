@@ -23,7 +23,7 @@ tf.random.set_seed(42)
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (10, 6)
 
-def load_data(csv_filepath='vle_data.csv'):
+def load_data(csv_filepath='Data/vle_data.csv'):
     if not os.path.exists(csv_filepath):
         raise FileNotFoundError(f"Data file '{csv_filepath}' not found. Please provide a valid CSV file.")
     df = pd.read_csv(csv_filepath)
@@ -193,13 +193,13 @@ def implement_raoult_baseline(data_splits, preprocessing_pipeline):
     return {'mae_baseline': mae_baseline, 'rmse_baseline': rmse_baseline}
 
 def save_artifacts(model, preprocessing_pipeline):
-    model.save('ann_vle_model.h5')
-    joblib.dump(preprocessing_pipeline, 'preprocessing_pipeline.pkl')
+    model.save('ANN_BinaryVLE/ann_vle_model.h5')
+    joblib.dump(preprocessing_pipeline, 'ANN_BinaryVLE/preprocessing_pipeline.pkl')
 
 def create_results_zip():
     files_to_zip = [
-        'ann_vle_model.h5',
-        'preprocessing_pipeline.pkl',
+        'ANN_BinaryVLE/ann_vle_model.h5',
+        'ANN_BinaryVLE/preprocessing_pipeline.pkl',
         'best_model.weights.h5',
         'parity_plot.png',
         'residuals_plot.png',
@@ -220,7 +220,7 @@ def main():
     LEARNING_RATE = 0.001
     SCALER_TYPE = 'standard'
 
-    df = load_data('vle_data.csv')
+    df = load_data('Data/vle_data.csv')
     data_final = preprocess_data(df, SCALER_TYPE)
     splits_final = split_data(data_final['X_scaled'], data_final['y'])
 

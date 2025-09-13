@@ -86,5 +86,5 @@ df = pd.DataFrame(data, columns=['x1', 'T', 'P', 'y1'])
 df = df.astype(float)  # Ensure all numeric
 print("DataFrame head:\n", df.head())
 print("DataFrame dtypes:\n", df.dtypes)
-df.to_csv('vle_data.csv', index=False)
-print(f"Generated {len(df)} data points. Saved to vle_data.csv")
+df.to_csv('Data/vle_data.csv', index=False)
+print(f"Generated {len(df)} data points. Saved to Data/vle_data.csv")

@@ -13,7 +13,7 @@ from sklearn.metrics import mean_absolute_error, mean_squared_error
 sns.set_style("whitegrid")
 plt.rcParams['figure.figsize'] = (10, 6)
 
-def predict_from_saved(X_raw, model_path='ann_vle_model.h5', pipeline_path='preprocessing_pipeline.pkl'):
+def predict_from_saved(X_raw, model_path='ANN_BinaryVLE/ann_vle_model.h5', pipeline_path='ANN_BinaryVLE/preprocessing_pipeline.pkl'):
     model = keras.models.load_model(model_path, compile=False)
     preprocessing_pipeline = joblib.load(pipeline_path)
     scaler = preprocessing_pipeline['scaler']
@@ -25,7 +25,7 @@ def predict_from_saved(X_raw, model_path='ann_vle_model.h5', pipeline_path='prep
     y_pred = model.predict(X_scaled, verbose=0).flatten()
     return np.clip(y_pred, 0, 1)
 
-def recreate_plots(model_path='ann_vle_model.h5', pipeline_path='preprocessing_pipeline.pkl', data_file='vle_data.csv'):
+def recreate_plots(model_path='ANN_BinaryVLE/ann_vle_model.h5', pipeline_path='ANN_BinaryVLE/preprocessing_pipeline.pkl', data_file='Data/vle_data.csv'):
     df = pd.read_csv(data_file)
     X = df[['x1', 'T', 'P']].values
     y = np.clip(np.asarray(df['y1']), 0, 1)  # pyright: ignore[reportCallIssue]
@@ -46,7 +46,7 @@ def recreate_plots(model_path='ann_vle_model.h5', pipeline_path='preprocessing_p
     plt.title('Parity Plot: Experimental vs Predicted y1 (Recreated)')
     plt.legend(['Perfect prediction']); plt.axis('equal')
     plt.tight_layout()
-    plt.savefig('parity_plot_recreated.png', dpi=300, bbox_inches='tight')
+    plt.savefig('ANN_BinaryVLE/parity_plot_recreated.png', dpi=300, bbox_inches='tight')
     plt.close()
 
     # Residuals plot
@@ -58,7 +58,7 @@ def recreate_plots(model_path='ann_vle_model.h5', pipeline_path='preprocessing_p
     plt.title('Residuals Plot (Recreated)')
     plt.legend(['Zero residual'])
     plt.tight_layout()
-    plt.savefig('residuals_plot_recreated.png', dpi=300, bbox_inches='tight')
+    plt.savefig('ANN_BinaryVLE/residuals_plot_recreated.png', dpi=300, bbox_inches='tight')
     plt.close()
 
     # y1 vs x1 curve
@@ -82,10 +82,10 @@ def recreate_plots(model_path='ann_vle_model.h5', pipeline_path='preprocessing_p
     plt.title(f'VLE Curve at T≈{T_mean_original:.1f}K, P≈{P_original:.3f}bar (Recreated)')
     plt.legend(); plt.grid(True, alpha=0.3); plt.xlim(0,1); plt.ylim(0,1)
     plt.tight_layout()
-    plt.savefig('y_vs_x_plot_recreated.png', dpi=300, bbox_inches='tight')
+    plt.savefig('ANN_BinaryVLE/y_vs_x_plot_recreated.png', dpi=300, bbox_inches='tight')
     plt.close()
 
 if __name__ == "__main__":
-    if not os.path.exists('ann_vle_model.h5') or not os.path.exists('preprocessing_pipeline.pkl'):
+    if not os.path.exists('ANN_BinaryVLE/ann_vle_model.h5') or not os.path.exists('ANN_BinaryVLE/preprocessing_pipeline.pkl'):
         raise FileNotFoundError("Model and/or pipeline not found. Run preprocessing_training_saving.py first.")
     recreate_plots()

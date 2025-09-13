@@ -157,7 +157,7 @@ vle3/
 ├── preprocessing_training_saving.py # Main training pipeline
 ├── predict_from_saved_model.py      # Prediction utilities
 ├── test.ipynb                       # Interactive analysis notebook
-├── vle_data.csv                     # Training dataset (500 points)
+├── Data/vle_data.csv                # Training dataset (500 points)
 ├── requirements.txt                 # Dependencies for pip
 ├── pyproject.toml                   # Dependencies for uv
 └── ANN_BinaryVLE/                   # Pre-trained model package

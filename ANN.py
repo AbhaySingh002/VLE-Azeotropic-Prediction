@@ -75,7 +75,7 @@ def train_model(model, X_train, y_train, X_val, y_val, epochs=200, batch_size=32
         ),
         # ModelCheckpoint: Save the best model weights to disk
         ModelCheckpoint(
-            'best_model.weights.h5',     # Filepath to save the weights
+            'ANN_BinaryVLE/best_model.weights.h5',     # Filepath to save the weights
             monitor='val_loss',
             save_best_only=True,         # Save only the best model (lowest val_loss)
             save_weights_only=True,      # Save weights (not the whole model structure)
