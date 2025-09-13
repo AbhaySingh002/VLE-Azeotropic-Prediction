@@ -105,22 +105,22 @@ pip install -r requirements.txt
 ### Option 2: Using uv (recommended)
 
 ```bash
-# Clone the repository
-git clone <repository-url>
-cd vle3
+# Clone the repository 
+git clone <repository-url> 
+cd vle3 
 
-# Install uv (macOS/Linux) if not available
-curl -LsSf https://astral.sh/uv/install.sh | sh
+# Install uv (macOS/Linux) if not available 
+curl -LsSf https://astral.sh/uv/install.sh | sh 
 
-# Create & activate virtual environment
-uv venv .venv
-source .venv/bin/activate  # on Windows: .venv\Scripts\activate
+# Create & activate virtual environment 
+uv venv .venv 
+source .venv/bin/activate  # on Windows: .venv\Scripts\activate 
 
-# Install dependencies strictly from uv.lock
-uv sync --frozen
+# Install dependencies strictly from uv.lock 
+uv sync --frozen 
 
-# To update the lockfile later:
-# uv lock --upgrade && uv sync
+# To update the lockfile later
+# uv lock --upgrade && uv sync 
 ```
 
 ## Usage
