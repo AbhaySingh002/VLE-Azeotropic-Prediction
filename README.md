@@ -109,12 +109,18 @@ pip install -r requirements.txt
 git clone <repository-url>
 cd vle3
 
-# Create virtual environment with uv
-uv venv
-source .venv/bin/activate  # Windows: .venv\Scripts\activate
+# Install uv (macOS/Linux) if not available
+curl -LsSf https://astral.sh/uv/install.sh | sh
 
-# Install dependencies
-uv pip install -r requirements.txt
+# Create & activate virtual environment
+uv venv .venv
+source .venv/bin/activate  # on Windows: .venv\Scripts\activate
+
+# Install dependencies strictly from uv.lock
+uv sync --frozen
+
+# To update the lockfile later:
+# uv lock --upgrade && uv sync
 ```
 
 ## Usage
